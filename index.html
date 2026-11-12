@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NotaUPSA</title>
+<meta name="description" content="¿Cuánto necesito en el final? Calculadora de notas y promedio para estudiantes.">
+<meta name="theme-color" content="#07070d">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icono.svg">
+<link rel="apple-touch-icon" href="icono-192.png">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<header>
+  <img src="icono.svg" alt="" width="40" height="40">
+  <div><h1>NOTA<span>UPSA</span></h1><p>¿Cuánto necesito en el final?</p></div>
+  <button id="instalar" hidden>INSTALAR</button>
+</header>
+
+<section id="resumen">
+  <div class="dato"><small>PROMEDIO DEL SEMESTRE</small><b id="prom">—</b></div>
+  <div class="dato"><small>MATERIAS</small><b id="nmat">0</b></div>
+  <div class="dato"><small>EN RIESGO</small><b id="nriesgo" class="malo">0</b></div>
+  <div class="dato"><small>NOTA PARA APROBAR</small><b><input id="aprob" type="number" min="1" max="100" value="51" aria-label="Nota mínima para aprobar"></b></div>
+</section>
+
+<main id="materias"></main>
+
+<div class="acciones">
+  <button id="nueva" class="principal">+ NUEVA MATERIA</button>
+  <button id="exportar">EXPORTAR</button>
+  <label class="boton">IMPORTAR<input id="importar" type="file" accept=".json" hidden></label>
+</div>
+
+<section class="ayuda">
+  <h2>CÓMO SE CALCULA</h2>
+  <p>Cada materia tiene sus evaluaciones con su peso en %. La nota actual es la suma de <code>nota × peso</code> de lo que ya diste. Lo que falta se calcula con las evaluaciones vacías: <code>necesitas = (meta − actual) ÷ peso restante</code>.</p>
+  <p>Los pesos vienen de ejemplo; cámbialos por los de tu docente. Todo se guarda solo en tu teléfono.</p>
+</section>
+<footer>NOTAUPSA · herramienta de estudiantes, no oficial · <a href="https://github.com/NeckHurtttt/NotaUPSA">código</a></footer>
+
+<template id="t-materia">
+  <article class="materia">
+    <div class="cab">
+      <input class="nombre" placeholder="Nombre de la materia" aria-label="Materia">
+      <input class="creditos" type="number" min="0" max="10" placeholder="créd." aria-label="Créditos">
+      <button class="borrar" title="Borrar materia">✕</button>
+    </div>
+    <div class="evals"></div>
+    <button class="mas">+ evaluación</button>
+    <div class="barra"><i class="hecho"></i><i class="falta"></i><span class="linea"></span></div>
+    <div class="veredicto"></div>
+  </article>
+</template>
+<script src="app.js"></script>
+</body>
+</html>
